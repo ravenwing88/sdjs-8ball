@@ -1,0 +1,44 @@
+* {
+    /* border: 1px solid red; */
+    font-family: 'Crimson Pro', serif;
+}
+
+.background {
+    display: grid;
+    background-color: #F7F7F7;
+    padding-bottom: 30px;
+}
+
+.ball {
+    display: flex;
+    background-image: url("../img/8ball.png");
+    background-position: 50% 45%;
+    width: 860px;
+    height: 860px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.fortune {
+    margin: auto;
+    color: white;
+    background-color: initial;
+    width: 130px;
+    text-align: center;
+    text-shadow: 1px 1px 10px blue;
+}
+
+.shake {
+    height: 60px;
+    width: 150px;
+    border-radius: 10px;
+    color: white;
+    background-color: #333333;
+    font-weight: bold;
+    font-size: 20px;
+    margin: auto;
+}
+
+.shake:active {
+    background-color: #777777;
+}
