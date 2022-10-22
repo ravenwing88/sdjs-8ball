@@ -9,12 +9,43 @@
     padding-bottom: 30px;
 }
 
+.interact {
+    background-position: 50% 45%;
+    width: 830px;
+    margin: 0 auto;
+}
+
+.input {
+    margin: 10px auto;
+    padding: 0 5%;
+}
+
+.question {
+    width: 500px;
+}
+
+.shake {
+    display: block;
+    height: 45px;
+    width: 130px;
+    border-radius: 10px;
+    color: white;
+    background-color: #333333;
+    font-weight: bold;
+    font-size: 20px;
+    margin: auto;
+}
+
+.shake:active {
+    background-color: #777777;
+}
+
 .ball {
     display: flex;
     background-image: url("../img/8ball.png");
     background-position: 50% 45%;
-    width: 860px;
-    height: 860px;
+    width: 830px;
+    height: 830px;
     margin: 0 auto;
     align-items: center;
 }
@@ -26,19 +57,4 @@
     width: 130px;
     text-align: center;
     text-shadow: 1px 1px 10px blue;
-}
-
-.shake {
-    height: 60px;
-    width: 150px;
-    border-radius: 10px;
-    color: white;
-    background-color: #333333;
-    font-weight: bold;
-    font-size: 20px;
-    margin: auto;
-}
-
-.shake:active {
-    background-color: #777777;
 }
