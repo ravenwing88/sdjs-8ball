@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Magic Snark Ball</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +15,16 @@
 </head>
 <body>
     <div class="background">
+        <div class="interact">
+            <div class="input">
+                <label for="question">Ask me a question (yes or no, please):</label>
+                <input type="text" id="question" class="question">
+            </div>
+            <button class="shake" onclick="isInput(); document.getElementById('question').value = ''">Shake</button>
+        </div>
         <div class="ball">
             <span class="fortune" id="fortune">Ask me a question.</span>
         </div>
-        <button class="shake" onclick="fortuneTeller()">Shake</button>
     </div>
 </body>
 </html>
