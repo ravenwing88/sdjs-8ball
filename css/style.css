@@ -105,6 +105,25 @@ body {
         background-image: none;
     }
 
+    .interact {
+        width: 480px;
+    }
+
+    .prompt, .question {
+        display: block;
+        font-size: 2rem;
+    }
+
+    .question {
+        width: 400px;
+    }
+
+    .shake {
+        height: 55px;
+        width: 135px;
+        font-size: 30px;
+    }
+
     /* .prompt {
         color: #999999;
     } */
