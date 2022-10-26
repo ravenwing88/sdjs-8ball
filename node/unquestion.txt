@@ -1,0 +1,3 @@
+"Is that a question?",
+"Questions only, please.",
+"Questions are identified by a question mark."

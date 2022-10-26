@@ -1,0 +1,3 @@
+"I don't understand the question.",
+"No open-ended questions, please.",
+"\"Yes\" or \"no\" questions only."
