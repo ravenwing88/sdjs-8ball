@@ -44,7 +44,7 @@ const NOINPUT = [
     "You have to ask a question."
 ];
 
-const SLOSH = new Audio("https://github.com/DevMiser/8-Ball-Shaking/blob/master/Shaking%205.wav?raw=true");
+const SLOSH = new Audio("https://github.com/ravenwing88/sdjs-8ball/blob/main/sfx/Shaking5.wav?raw=true");
 
 let question, length, answer;
 
