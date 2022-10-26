@@ -9,11 +9,11 @@ body {
 }
 
 .background {
-    display: grid;
-    background-image: url(../img/chess-buddika-gunathilaka-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    padding-bottom: 30px;
+        display: grid;
+        background-image: url(../img/chess-buddika-gunathilaka-unsplash.jpg);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        padding-bottom: 30px;
 }
 
 .interact {
@@ -93,4 +93,14 @@ body {
     width: 130px;
     text-align: center;
     text-shadow: 1px 1px 10px blue;
+}
+
+@media (max-width: 480px) {
+    .background {
+        background-image: linear-gradient(#000055, #000011);
+    }
+
+    .prompt {
+        color: #999999;
+    }
 }
