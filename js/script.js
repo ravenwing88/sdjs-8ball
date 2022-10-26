@@ -76,9 +76,11 @@ function isInput() {
         // randomize whether to just mock the user or actually try to be a useful oracle
         let option = Math.floor(Math.random() * 10);
         if (option === 0)
-            spongeBob();
+            // spongeBob();
+            console.log("Run spongeBob()");
         else
-            isQuestion();
+            // isQuestion();
+            console.log("Run isQuestion()");
     }
 }
 
