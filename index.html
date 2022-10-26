@@ -17,12 +17,12 @@
     <div class="background">
         <div class="interact">
             <div class="input">
-                <label for="question">Ask me a question (yes or no, please):</label>
+                <label for="question" class="prompt">Ask me a question:</label>
                 <input type="text" id="question" class="question">
             </div>
-            <button class="shake" onclick="isInput(); document.getElementById('question').value = ''">Shake</button>
+            <button class="shake" onclick="shakeBall()">Shake</button>
         </div>
-        <div class="ball">
+        <div class="ball" id="ball">
             <span class="fortune" id="fortune">Ask me a question.</span>
         </div>
     </div>

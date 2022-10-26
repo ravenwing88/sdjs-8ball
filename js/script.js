@@ -1,4 +1,4 @@
-const PHRASES = [
+const DEFINITE = [
     "It is certain.",
     "It is decidedly so.",
     "Without a doubt.",
@@ -9,16 +9,19 @@ const PHRASES = [
     "Outlook good.",
     "Yes.",
     "Signs point to yes.",
-    "Reply hazy, try again.",
-    "Ask again later.",
-    "Better not tell you now.",
-    "Cannot predict now.",
-    "Concentrate and ask again.",
     "Don't count on it.",
     "My reply is no.",
     "My sources say no.",
     "Outlook not so good.",
     "Very doubtful.",
+];
+
+const INDEFINITE = [
+    "Reply hazy, try again.",
+    "Ask again later.",
+    "Better not tell you now.",
+    "Cannot predict now.",
+    "Concentrate and ask again.",
     "How dare you speak to me.",
     "I'm not going to tell you.",
     "You don't deserve to know.",
@@ -29,14 +32,9 @@ const PHRASES = [
 const UNQUESTION = [
     "Is that a question?",
     "Questions only, please.",
-    "Questions are identified by a question mark."
-]
-
-const OPENEND = [
-    "I don't understand the question.",
-    "No open-ended questions, please.",
-    "\"Yes\" or \"no\" questions only."
-]
+    "Questions are identified by a question mark.",
+    "What part of the word \"question\" don't you understand?"
+];
 
 const NOINPUT = [
     "*stares expectantly*",
@@ -44,21 +42,35 @@ const NOINPUT = [
     "This is awkward.",
     "Please say something.",
     "You have to ask a question."
-]
+];
 
-let question, length;
+// const SLOSH = new Audio("https://github.com/DevMiser/8-Ball-Shaking/blob/master/Shaking%205.wav?raw=true");
+const SLOSH = new Audio("../sfx/Shaking5.wav");
+
+let question, length, answer;
 
 console.log("\"Smart\" is both literal and colloquial.");
 console.log("Literal in the sense that it can somewhat differentiate between simple and complex questions, as well as between open- and closed-ended questions.");
 console.log("Colloquial in that sometimes it would rather just be snarky.");
 console.log("Enjoy.")
 
+// this function initiates a series of functions, starting with aesthetics
+function shakeBall() {
+    document.getElementById('fortune').innerHTML = ""; // remove 8-ball's message while it shakes
+    document.getElementById('ball').id = "shakeball"; // change 8-ball's id "ball" to id "shakeball"
+    SLOSH.play();
+    setTimeout(() => { isInput(); }, 1800); // start determining how to reply after 1.8 seconds
+}
+
 // this function detects whether or not the user input anything at all
 function isInput() {
+    document.getElementById('shakeball').id = "ball"; // change 8-ball back to id "ball"
+
     question = document.getElementById('question').value;
     if (question === '') {
-        let answer = Math.floor(Math.random() * NOINPUT.length);
-        document.getElementById('fortune').innerHTML = NOINPUT[answer];
+        let rand = Math.floor(Math.random() * NOINPUT.length);
+        answer = NOINPUT[rand];
+        outputAnswer();
     }
     else {
         // randomize whether to just mock the user or actually try to be a useful oracle
@@ -72,6 +84,7 @@ function isInput() {
 
 // this function, called 10% of the time, just mocks the user, repeating their input back to them in SpongeBob casing
 function spongeBob() {
+    answer = ""; // clear the previous answer
     length = question.length;
     let letter;
     document.getElementById('fortune').innerHTML = "";
@@ -82,8 +95,9 @@ function spongeBob() {
         else {
             letter = question[i].toUpperCase(); // odd is upper
         }
-        document.getElementById('fortune').append(letter);
+        answer = answer.concat(letter); // build the answer string letter by letter
     }
+    outputAnswer();
 }
 
 // this function is just a snarky question mark detector
@@ -92,29 +106,58 @@ function isQuestion() {
     if (question[length] === '?')
         closedEnded();
     else {
-        let answer = Math.floor(Math.random() * UNQUESTION.length);
-        document.getElementById('fortune').innerHTML = UNQUESTION[answer];
+        let rand = Math.floor(Math.random() * UNQUESTION.length);
+        answer = UNQUESTION[rand];
+        outputAnswer();
     }
 }
 
 // this function tries to determine whether or not a yes or no question is being asked
+// in this version I set the answers to only choose from the indefinite answer set
 function closedEnded() {
-    let word = question.split(' '); // split up the input word by word
+    let word = question.split(/\W/); // split up the input word by word, including all non-alphabetical characters as word delineators
     let firstWord = word[0].toLowerCase(); // get the first word of the question
-    // these six words are most likely to weed out open-ended questions
-    if (firstWord === 'who' || firstWord === 'what' || firstWord === 'when' || firstWord === 'where' || firstWord === 'why' || firstWord === 'how') {
-        let answer = Math.floor(Math.random() * OPENEND.length);
-        document.getElementById('fortune').innerHTML = OPENEND[answer];
+    // the six basic info gathering questions are most likely to be open-ended and can't be answered with a yes or no
+    // beginning a question with 'if' also could potentially cause some confusion
+    if (firstWord === 'who' || firstWord === 'what' || firstWord === 'when' || firstWord === 'where' || firstWord === 'why' || firstWord === 'how' || firstWord === 'if') {
+        let rand = Math.floor(Math.random() * INDEFINITE.length);
+        answer = INDEFINITE[rand];
+        outputAnswer();
     }
-    // the smart 8-ball doesn't like qualifiers
-    else if (firstWord === 'if')
-        document.getElementById('fortune').innerHTML = "Can we keep this simple? Please?";
     else
         fortuneTeller();
 }
 
-// this function tells the actual fortune, once all the criteria have been met
+// this function determines the actual fortune, once all the criteria have been met
 function fortuneTeller() {
-    let answer = Math.floor(Math.random() * PHRASES.length);
-    document.getElementById('fortune').innerHTML = PHRASES[answer];
+    const PHRASES = DEFINITE.concat(INDEFINITE); // combine these two arrays
+    let rand = Math.floor(Math.random() * PHRASES.length);
+    answer = PHRASES[rand];
+    outputAnswer();
+}
+
+// final function, regardless the output
+function outputAnswer() {
+    let message = document.getElementById('fortune');
+    // message.style.filter = "opacity(0)"; // make the answer invisible
+    document.getElementById('question').value = ''; // empty the input field
+    message.innerHTML = answer; // print the answer
+    // let op = 0.1;
+    // if (op < 1) {
+    //     setInterval(function () {document.getElementById('fortune').style.filter = `alpha(opacity=${op * 100})`}, 100);
+    // }
+
+    // NOT CURRENTLY WORKING
+    // function unfade(message) {
+    //     let op = 0.1;  // initial opacity
+    //     message.style.display = 'block';
+    //     let timer = setInterval(function () {
+    //         if (op >= 1){
+    //             clearInterval(timer);
+    //         }
+    //         message.style.opacity = op;
+    //         message.style.filter = `opacity=${op * 100})`;
+    //         op += op * 0.1;
+    //     }, 10);
+    // }
 }
