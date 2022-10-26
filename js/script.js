@@ -1,75 +1,27 @@
-const PHRASES = [
-    "It is certain.",
-    "It is decidedly so.",
-    "Without a doubt.",
-    "Yes, definitely.",
-    "You may rely on it.",
-    "As I see it, yes.",
-    "Most likely.",
-    "Outlook good.",
-    "Yes.",
-    "Signs point to yes.",
-    "Reply hazy, try again.",
-    "Ask again later.",
-    "Better not tell you now.",
-    "Cannot predict now.",
-    "Concentrate and ask again.",
-    "Don't count on it.",
-    "My reply is no.",
-    "My sources say no.",
-    "Outlook not so good.",
-    "Very doubtful.",
-    "How dare you speak to me.",
-    "I'm not going to tell you.",
-    "You don't deserve to know.",
-    "Run a Google search.",
-    "Ask Jeeves."
-];
-
-const UNQUESTION = [
-    "Is that a question?",
-    "Questions only, please.",
-    "Questions are identified by a question mark."
-]
-
-const OPENEND = [
-    "I don't understand the question.",
-    "No open-ended questions, please.",
-    "\"Yes\" or \"no\" questions only."
-]
-
-const NOINPUT = [
-    "*stares expectantly*",
-    "Well?",
-    "This is awkward.",
-    "Please say something.",
-    "You have to ask a question."
-]
-
 let question, length;
-
-console.log("\"Smart\" is both literal and colloquial.");
-console.log("Literal in the sense that it can somewhat differentiate between simple and complex questions, as well as between open- and closed-ended questions.");
-console.log("Colloquial in that sometimes it would rather just be snarky.");
-console.log("Enjoy.")
 
 // this function detects whether or not the user input anything at all
 function isInput() {
     question = document.getElementById('question').value;
     if (question === '') {
-        let answer = Math.floor(Math.random() * NOINPUT.length);
-        document.getElementById('fortune').innerHTML = NOINPUT[answer];
+        jQuery.get('noinput.txt', function(data)) 
+
+        // let answer = Math.floor(Math.random() * NOINPUT.length);
+        // document.getElementById('fortune').innerHTML = NOINPUT[answer];
     }
     else {
         // randomize whether to just mock the user or actually try to be a useful oracle
         let option = Math.floor(Math.random() * 10);
         if (option === 0)
-            spongeBob();
+            // spongeBob();
+            console.log("Run spongeBob()");
         else
-            isQuestion();
+            // isQuestion();
+            console.log("Run isQuestion()");
     }
 }
 
+/*
 // this function, called 10% of the time, just mocks the user, repeating their input back to them in SpongeBob casing
 function spongeBob() {
     length = question.length;
@@ -118,3 +70,4 @@ function fortuneTeller() {
     let answer = Math.floor(Math.random() * PHRASES.length);
     document.getElementById('fortune').innerHTML = PHRASES[answer];
 }
+*/
