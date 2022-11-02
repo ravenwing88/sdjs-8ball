@@ -138,25 +138,10 @@ function fortuneTeller() {
 // final function, regardless the output
 function outputAnswer() {
     let message = document.getElementById('fortune');
-    // message.style.filter = "opacity(0)"; // make the answer invisible
+    message.style.filter = "opacity(0)"; // make the answer invisible
     document.getElementById('question').value = ''; // empty the input field
     message.innerHTML = answer; // print the answer
-    // let op = 0.1;
-    // if (op < 1) {
-    //     setInterval(function () {document.getElementById('fortune').style.filter = `alpha(opacity=${op * 100})`}, 100);
-    // }
-
-    // NOT CURRENTLY WORKING
-    // function unfade(message) {
-    //     let op = 0.1;  // initial opacity
-    //     message.style.display = 'block';
-    //     let timer = setInterval(function () {
-    //         if (op >= 1){
-    //             clearInterval(timer);
-    //         }
-    //         message.style.opacity = op;
-    //         message.style.filter = `opacity=${op * 100})`;
-    //         op += op * 0.1;
-    //     }, 10);
-    // }
+    message.style.filter = "opacity(1)"; // make the answer visible again
+    document.getElementById('fortune').id = "fadeinfortune"; // change fortune's id "fortune" to id "fadeinfortune"...
+    setTimeout(() => { document.getElementById('fadeinfortune').id = "fortune"; }, 500); // ...and back again in half a second
 }
